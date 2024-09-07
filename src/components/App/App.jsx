@@ -28,24 +28,26 @@ export default function App() {
   useEffect(() => {
     if(!query) return;
 
-    const fetchImages = async () => {
+    const fetchImages = () => {
       setLoading(true);
       setError(null);
 
-      try {
-        const response = await axios.get(BASE_URL, {
+      axios.get(BASE_URL, {
           params: {
             query,
             page,
             client_id: API_KEY,
           },
-        });
+        })
+      .then(response => { 
         setImages(prevImages => [...prevImages, ...response.data.results]);
-      } catch (error) {
+      })
+      .catch (() => {
         setError('Error fetching images. Please try again.');
-      } finally {
+      })
+      .finally(() => {
         setLoading(false);
-      }
+      });
     };
     fetchImages();
   }, [query, page]);
