@@ -16,6 +16,12 @@ import axios from 'axios';
 const API_KEY = "E-OIWc4PYrwrdKWkop-IGYVhoH2yXdooi0m7fDqxxto";
 const BASE_URL = "https://api.unsplash.com/search/photos";
 
+interface ResponseTypes {
+  total: number;
+  total_pages: number;
+  results: Image[];
+}
+
 export default function App() {
 
   const [query, setQuery] = useState<string>("");
@@ -33,7 +39,7 @@ export default function App() {
       setLoading(true);
       setError(null);
 
-      axios.get(BASE_URL, {
+      axios.get<ResponseTypes>(BASE_URL, {
           params: {
             query,
             page,
