@@ -9,21 +9,22 @@ import ImageModal from '../ImageModal/ImageModal.js';
 
 import { useState, useEffect } from 'react';
 import { Toaster } from 'react-hot-toast';
+import {Image} from '../types';
 
 import axios from 'axios';
 
-const API_KEY = 'E-OIWc4PYrwrdKWkop-IGYVhoH2yXdooi0m7fDqxxto';
-const BASE_URL = 'https://api.unsplash.com/search/photos';
+const API_KEY = "E-OIWc4PYrwrdKWkop-IGYVhoH2yXdooi0m7fDqxxto";
+const BASE_URL = "https://api.unsplash.com/search/photos";
 
 export default function App() {
 
-  const [query, setQuery] = useState('');
-  const [images, setImages] = useState([]);
-  const [page, setPage] = useState(1);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
-  const [showModal, setShowModal] =useState(false);
-  const [selectedImage, setSelectedImage] = useState(null);
+  const [query, setQuery] = useState<string>("");
+  const [images, setImages] = useState<Image[]>([]);
+  const [page, setPage] = useState<number>(1);
+  const [loading, setLoading] = useState<boolean>(false);
+  const [error, setError] = useState<string | null>(null);
+  const [showModal, setShowModal] =useState<boolean>(false);
+  const [selectedImage, setSelectedImage] = useState<Image | null>(null);
 
   useEffect(() => {
     if(!query) return;
@@ -40,10 +41,10 @@ export default function App() {
           },
         })
       .then(response => { 
-        setImages(prevImages => [...prevImages, ...response.data.results]);
+        setImages(prevImages => [...prevImages, ...response.data.results as Image[]]);
       })
       .catch (() => {
-        setError('Error fetching images. Please try again.');
+        setError("Error fetching images. Please try again.");
       })
       .finally(() => {
         setLoading(false);
@@ -52,7 +53,7 @@ export default function App() {
     fetchImages();
   }, [query, page]);
 
-  const handleSearchSubmit = searchQuery => {
+  const handleSearchSubmit = (searchQuery: string) => {
     if (searchQuery !== query) {
       setQuery(searchQuery);
       setImages([]);
@@ -62,7 +63,7 @@ export default function App() {
 
   const handleLoadMore = () => setPage(prevPage => prevPage + 1);
 
-  const openModal = image => {
+  const openModal = (image: Image) => {
     setSelectedImage(image);
     setShowModal(true);
   };

@@ -1,11 +1,13 @@
 import css from './Loader.module.css';
 
-import { TailSpin } from "react-loader-spinner";
+import { TailSpin } from 'react-loader-spinner';
 
-export default function Loader() {
+const Loader: React.FC = () => {
     return (
         <div className={css.loader}>
             <TailSpin height='80' width='80' color="black"/>
         </div>
     )
-}
+};
+
+export default Loader;
