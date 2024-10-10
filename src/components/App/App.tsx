@@ -1,11 +1,11 @@
 // import css from './App.module.css';
 
 import SearchBar from '../SearchBar/SearchBar.jsx';
-import ImageGallery from '../ImageGallery/ImageGallery.jsx';
-import Loader from '../Loader/Loader.jsx';
-import ErrorMessage from '../ErrorMessage/ErrorMessage.jsx';
-import LoadMoreBtn from '../LoadMoreBtn/LoadMoreBtn.jsx';
-import ImageModal from '../ImageModal/ImageModal.jsx';
+import ImageGallery from '../ImageGallery/ImageGallery.js';
+import Loader from '../Loader/Loader.js';
+import ErrorMessage from '../ErrorMessage/ErrorMessage.js';
+import LoadMoreBtn from '../LoadMoreBtn/LoadMoreBtn.js';
+import ImageModal from '../ImageModal/ImageModal.js';
 
 import { useState, useEffect } from 'react';
 import { Toaster } from 'react-hot-toast';
